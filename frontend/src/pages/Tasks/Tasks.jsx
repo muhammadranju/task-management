@@ -71,22 +71,28 @@ export default function TaskManager() {
       <div className="w-full max-w-3xl bg-slate-800 p-6 rounded-2xl shadow-lg">
         <h2 className="text-2xl font-bold mb-4 text-center">Your Tasks</h2>
         {/* Search and Add Task */}
-        <div className="flex justify-between mb-4">
-          <div className="flex items-center bg-slate-700 p-2 rounded-lg w-3/4">
+        <div className="flex justify-between mb-4 gap-x-2">
+          <div className="flex items-center bg-slate-700 p-2 rounded-lg  w-3/4">
             <FaSearch className="text-slate-400 mr-2" />
             <input
               type="text"
               placeholder="Search tasks..."
-              className="w-full bg-transparent outline-none text-white"
+              className="lg:w-full bg-transparent outline-none text-white"
               onChange={(e) => dispatch(setSearchQuery(e.target.value))}
             />
           </div>
           {/* Add Task Button */}
           <button
             onClick={() => setIsModalOpen(true)}
-            className="flex items-center bg-slate-100 text-black font-bold px-4 py-2 rounded-lg hover:bg-slate-300"
+            className="lg:flex items-center bg-slate-100 text-black font-bold px-4 lg:py-2 rounded-lg hover:bg-slate-300 hidden "
           >
             <FaPlus className="mr-2" /> Add Task
+          </button>
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="lg:hidden flex items-center bg-slate-100 text-black font-bold px-4 lg:py-2 rounded-lg hover:bg-slate-300"
+          >
+            <FaPlus className="mr-2" /> Add
           </button>
         </div>
 

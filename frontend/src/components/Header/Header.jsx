@@ -6,19 +6,22 @@ import { FaChevronDown } from "react-icons/fa";
 import { MdAccountBox } from "react-icons/md";
 import { TbLogout } from "react-icons/tb";
 import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../utils/slices/authSlice";
-import { Link, Navigate } from "react-router-dom";
 
 const Header = ({ setProfileModel }) => {
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("user"));
   const token = localStorage.getItem("token");
-  if (token === null) {
-    return <Navigate to="/auth/login" />;
+  const navigate = useNavigate();
+
+  if (token === null || user === null) {
+    return navigate("/auth/login");
   }
+
   const handelLogout = () => {
     dispatch(logout());
-    return <Navigate to="/auth/login" />;
+    return navigate("/auth/login");
   };
 
   return (

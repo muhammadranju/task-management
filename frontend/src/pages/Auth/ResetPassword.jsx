@@ -29,7 +29,7 @@ const ResetPassword = () => {
         <title>Reset Password | Task Manager</title>
       </Helmet>
 
-      <div className="flex justify-center items-center mt-64">
+      <div className="flex justify-center items-center lg:mt-64 mt-20">
         <div className="w-96 max-w-lg bg-slate-800 rounded-lg overflow-hidden shadow-lg">
           <div className="p-8">
             {/* Header Section */}
