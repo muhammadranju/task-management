@@ -41,7 +41,7 @@ export const addTask = createAsyncThunk(
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      return response.data.data; // Newly created task
+      return response.data.data; //✅ Newly created task
     } catch (error) {
       return thunkAPI.rejectWithValue(
         error.response?.data || "Failed to add task"
@@ -62,7 +62,7 @@ export const fetchSingleTask = createAsyncThunk(
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      return response.data; // Single task
+      return response.data; //✅ Single task
     } catch (error) {
       return thunkAPI.rejectWithValue(
         error.response?.data || "Failed to delete task"
@@ -71,7 +71,7 @@ export const fetchSingleTask = createAsyncThunk(
   }
 );
 
-// Delete a task
+//✅ Delete a task
 export const deleteTask = createAsyncThunk(
   "tasks/deleteTask",
   async (taskId, thunkAPI) => {
@@ -83,7 +83,7 @@ export const deleteTask = createAsyncThunk(
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      return taskId; // Return deleted task ID to remove it from state
+      return taskId; //✅ Return deleted task ID to remove it from state
     } catch (error) {
       return thunkAPI.rejectWithValue(
         error.response?.data || "Failed to delete task"
@@ -92,7 +92,7 @@ export const deleteTask = createAsyncThunk(
   }
 );
 
-// Update an existing task
+//✅ Update an existing task
 export const updateTask = createAsyncThunk(
   "tasks/updateTask",
   async ({ taskId, updatedData }, thunkAPI) => {
@@ -103,7 +103,7 @@ export const updateTask = createAsyncThunk(
       const response = await axios.put(`${BASE_URL}/${taskId}`, updatedData, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      return response.data.data; // Updated task
+      return response.data.data; //✅ Updated task
     } catch (error) {
       return thunkAPI.rejectWithValue(
         error.response?.data || "Failed to update task"
@@ -112,7 +112,7 @@ export const updateTask = createAsyncThunk(
   }
 );
 
-// Redux Slice
+//✅ Redux Slice
 const taskSlice = createSlice({
   name: "tasks",
   initialState: {
@@ -134,7 +134,7 @@ const taskSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      // Fetch Tasks
+      // ✅ Fetch Tasks
       .addCase(fetchTasks.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -149,7 +149,7 @@ const taskSlice = createSlice({
         state.error = action.payload;
       })
 
-      // Add Task (Optimistic UI Update)
+      // ✅ Add Task (Optimistic UI Update)
       .addCase(addTask.fulfilled, (state, action) => {
         state.tasks.push(action.payload);
       })
@@ -170,7 +170,7 @@ const taskSlice = createSlice({
         state.error = action.payload;
       })
 
-      // Delete Task (Remove from State)
+      // ✅ Delete Task (Remove from State)
       .addCase(deleteTask.fulfilled, (state, action) => {
         state.tasks = state.tasks.filter((task) => task.id !== action.payload);
       })
@@ -178,7 +178,7 @@ const taskSlice = createSlice({
         state.error = action.payload;
       })
 
-      // Update Task (Find and update in State)
+      // ✅ Update Task (Find and update in State)
       .addCase(updateTask.fulfilled, (state, action) => {
         const index = state.tasks.findIndex(
           (task) => task.id === action.payload.id

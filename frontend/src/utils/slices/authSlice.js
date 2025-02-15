@@ -141,9 +141,6 @@ const authSlice = createSlice({
       .addCase(registerUser.fulfilled, (state) => {
         state.loading = false;
         state.successMessage = "Registration successful!";
-        // Optionally, store the user info and token from the response if needed
-        // localStorage.setItem("user", JSON.stringify(action.payload.user));
-        // localStorage.setItem("token", action.payload.token);
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.loading = false;
