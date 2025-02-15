@@ -2,7 +2,15 @@
 
 ## Overview
 
-This is a full-stack Task Manager web application that allows users to manage their tasks efficiently. The application includes **user authentication, profile management, and task management** functionalities. The frontend is built with **React**, while the backend is powered by **Node.js with Express.js/NestJS**. The app provides a seamless user experience with state management using Redux Toolkit and API integration for task CRUD operations.
+This is a full-stack Task Manager web application that allows users to manage their tasks efficiently. The application includes **user authentication, profile management, and task management** functionalities. The frontend is built with **React**, while the backend is powered by **Node.js with Express.js**. The app provides a seamless user experience with state management using Redux Toolkit and API integration for task CRUD operations.
+
+## Frontend URL
+
+- https://task-management-frontend-liard.vercel.app
+
+## Backend URL
+
+- https://task-management-server-liard-ten.vercel.app
 
 ## Features
 
@@ -53,7 +61,7 @@ This is a full-stack Task Manager web application that allows users to manage th
 ### Backend
 
 - **Node.js**
-- **Express.js/NestJS**
+- **Express.js**
 - **MongoDB**
 - **JWT for authentication**
 - **bcrypt for password hashing**
@@ -80,7 +88,7 @@ This is a full-stack Task Manager web application that allows users to manage th
    ```
 3. Create a `.env` file and configure environment variables:
    ```env
-   REACT_APP_API_BASE_URL=http://localhost:5000
+   FRONTEND_URL=http://localhost:5173
    ```
 4. Start the development server:
    ```bash
