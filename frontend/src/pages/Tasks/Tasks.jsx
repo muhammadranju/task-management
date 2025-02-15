@@ -72,12 +72,12 @@ export default function TaskManager() {
         <h2 className="text-2xl font-bold mb-4 text-center">Your Tasks</h2>
         {/* Search and Add Task */}
         <div className="flex justify-between mb-4 gap-x-2">
-          <div className="flex items-center bg-slate-700 p-2 rounded-lg  w-3/4">
+          <div className="flex items-center bg-slate-700 p-2 rounded-lg  lg:w-3/4">
             <FaSearch className="text-slate-400 mr-2" />
             <input
               type="text"
               placeholder="Search tasks..."
-              className="lg:w-full bg-transparent outline-none text-white"
+              className="w-full bg-transparent outline-none text-white"
               onChange={(e) => dispatch(setSearchQuery(e.target.value))}
             />
           </div>
