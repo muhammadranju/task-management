@@ -15,6 +15,7 @@ import {
   setCurrentPage,
   setSearchQuery,
 } from "../../utils/slices/taskSlice";
+import { useDebounce } from "../../utils/useDebounce";
 
 export default function TaskManager() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -24,6 +25,8 @@ export default function TaskManager() {
   const [activeUpdateTab, setActiveUpdateTab] = useState(false);
   const [getTask, setGetTask] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [searchInput, setSearchInput] = useState("");
+  const debouncedSearch = useDebounce(searchInput, 500); // 500ms delay
 
   // ✅ Token from localStorage
   const token = localStorage.getItem("token");
@@ -37,7 +40,7 @@ export default function TaskManager() {
   });
 
   // ✅ Pagination
-  const TASKS_PER_PAGE = 4;
+  const TASKS_PER_PAGE = 6;
 
   // ✅ Redux dispatch
   const dispatch = useDispatch();
@@ -48,7 +51,8 @@ export default function TaskManager() {
   // ✅ Fetch Tasks on Component Mount
   useEffect(() => {
     dispatch(fetchTasks({ page: currentPage, limit: TASKS_PER_PAGE })); // Fetch tasks when component mounts
-  }, [dispatch, searchQuery, currentPage, isLoading]);
+    dispatch(setSearchQuery(debouncedSearch));
+  }, [debouncedSearch, dispatch, searchQuery, currentPage, isLoading]);
 
   if (token === null) {
     return <Navigate to="/auth/login" />;
@@ -78,7 +82,7 @@ export default function TaskManager() {
               type="text"
               placeholder="Search tasks..."
               className="w-full bg-transparent outline-none text-white"
-              onChange={(e) => dispatch(setSearchQuery(e.target.value))}
+              onChange={(e) => setSearchInput(e.target.value)}
             />
           </div>
           {/* Add Task Button */}

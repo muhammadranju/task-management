@@ -2,7 +2,7 @@ const Task = require("../../models/tasks.model/tasks.model");
 
 const getAllTasks = async (req, res, next) => {
   try {
-    const { page = 1, limit = 4 } = req.query; // ✅ Get pagination params from query
+    const { page = 1, limit = 6 } = req.query; // ✅ Get pagination params from query
 
     const tasks = await Task.find({ userId: req.user.id })
       .skip((page - 1) * limit) // ✅ Skip tasks for pagination
